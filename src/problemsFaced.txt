@@ -1,0 +1,190 @@
+<label htmlFor="domain"> Select your Choice </label>
+      <select name="beginner" id="domain">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="javascript">JavaScript</option>
+      </select>
+
+      <select name="advanced" id="domain">
+        <option value="react">React</option>
+        <option value="node">Node</option>
+        <option value="express">Express</option>
+        <option value="mongodb">MongoDB</option>
+      </select>
+      <br /><br /> 
+How to have 2 sections inside a <select> tag ? Use <optgroup> . 
+
+The solution for above : 
+
+<select name="domain" id="domain">
+        <optgroup label="Beginners">
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="js">JavaScript</option>
+        </optgroup>
+
+        <optgroup label="Advanced">
+          <option value="react">React</option>
+          <option value="node">Node</option>
+          <option value="express">Express</option>
+          <option value="mongodb">MongoDB</option>
+        </optgroup>
+</select>
+
+Expected onClick listener to be a function, instead got a value of object type.
+    at getListener (http://localhost:3000/static/js/bundle.js:9951:15)
+    at accumulateSinglePhaseListeners (http://localhost:3000/static/js/bundle.js:14540:28)
+    at extractEvents$4 (http://localhost:3000/static/js/bundle.js:14248:26)
+    at extractEvents$5 (http://localhost:3000/static/js/bundle.js:14273:7)
+    at dispatchEventsForPlugins (http://localhost:3000/static/js/bundle.js:14353:7)
+    at http://localhost:3000/static/js/bundle.js:14514:16
+    at batchedUpdates$1 (http://localhost:3000/static/js/bundle.js:28932:16)
+    at batchedUpdates (http://localhost:3000/static/js/bundle.js:9898:16)
+    at dispatchEventForPluginEventSystem (http://localhost:3000/static/js/bundle.js:14513:7)
+    at dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay (http://localhost:3000/static/js/bundle.js:12020:9) 
+
+Got this error due to incorrect destructuring of props.
+
+Not enclosing handleClick inside {} was the problem.
+const Home = ({handleClick}) => { 
+    return (
+        ...
+    )
+} 
+
+Display data button was not working. In app component, imported home. When changed it to data, it worked. Why?
+
+I guess it's because the data file imports Home component as well.
+
+
+Uncaught runtime errors:
+×
+ERROR
+Cannot read properties of null (reading 'value')
+TypeError: Cannot read properties of null (reading 'value')
+    at handleClick (http://localhost:3000/static/js/bundle.js:122:47)
+    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:10228:18)
+    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:10272:20)
+    at invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:10329:35)
+    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/bundle.js:10343:29)
+    at executeDispatch (http://localhost:3000/static/js/bundle.js:14486:7)
+    at processDispatchQueueItemsInOrder (http://localhost:3000/static/js/bundle.js:14512:11)
+    at processDispatchQueue (http://localhost:3000/static/js/bundle.js:14523:9)
+    at dispatchEventsForPlugins (http://localhost:3000/static/js/bundle.js:14532:7)
+    at http://localhost:3000/static/js/bundle.js:14692:16
+ERROR
+Cannot read properties of null (reading 'value')
+TypeError: Cannot read properties of null (reading 'value')
+    at handleClick (http://localhost:3000/static/js/bundle.js:122:47)
+    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:10228:18)
+    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:10272:20)
+    at invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:10329:35)
+    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/bundle.js:10343:29)
+    at executeDispatch (http://localhost:3000/static/js/bundle.js:14486:7)
+    at processDispatchQueueItemsInOrder (http://localhost:3000/static/js/bundle.js:14512:11)
+    at processDispatchQueue (http://localhost:3000/static/js/bundle.js:14523:9)
+    at dispatchEventsForPlugins (http://localhost:3000/static/js/bundle.js:14532:7)
+    at http://localhost:3000/static/js/bundle.js:14692:16
+    
+Error when submit button clicked.
+
+const handleClick = (e) => {
+//         e.preventDefault();
+
+//         const fname = document.querySelector('.firstName').value;
+//         setFirstName(fname);
+//         const lname = document.querySelector('.lastName').value;
+//         setLastName(lname);
+//         const email = document.querySelector('.email').value;
+//         setEmail(email);
+//         const contact = document.querySelector('.contact').value;
+//         setContact(contact);
+//         const gender = document.querySelector('input[name="gender"]:checked')?.value;
+//         setGender(gender);
+//         const subject = document.querySelector('input[name="subject"]:checked')?.value;
+//         setSubject(subject);
+//         const resume = document.querySelector('.resume').value;
+//         setUrl(resume);
+//         const url = document.querySelector('.url').value;
+//         setUrl(url);
+//         const domain = document.querySelector('.domain').value;
+//         setDomain(domain);
+//         const about = document.querySelector('.about').value;
+//         setAbout(about);
+//     }
+
+Above is the code, when there was error. 
+
+import React, { useState } from 'react';
+import Home from './Home';
+
+const Data = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+  const [gender, setGender] = useState("");
+  const [subject, setSubject] = useState("");
+  const [resume, setResume] = useState("");
+  const [url, setUrl] = useState("");
+  const [domain, setDomain] = useState("");
+  const [about, setAbout] = useState("");
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    const fname = document.querySelector('.firstName')?.value;
+    if (fname) setFirstName(fname);
+
+    const lname = document.querySelector('.lastName')?.value;
+    if (lname) setLastName(lname);
+
+    const emailVal = document.querySelector('.email')?.value;
+    if (emailVal) setEmail(emailVal);
+
+    const contactVal = document.querySelector('.contact')?.value;
+    if (contactVal) setContact(contactVal);
+
+    const genderVal = document.querySelector('input[name="gender"]:checked')?.value;
+    if (genderVal) setGender(genderVal);
+
+    const subjectVal = document.querySelector('input[name="subject"]:checked')?.value;
+    if (subjectVal) setSubject(subjectVal);
+
+    const resumeVal = document.querySelector('.resume')?.files[0];
+    if (resumeVal) setResume(resumeVal);
+
+    const urlVal = document.querySelector('.url')?.value;
+    if (urlVal) setUrl(urlVal);
+
+    const domainVal = document.querySelector('.domain')?.value;
+    if (domainVal) setDomain(domainVal);
+
+    const aboutVal = document.querySelector('.about')?.value;
+    if (aboutVal) setAbout(aboutVal);
+  }
+
+  return (
+    <>
+      <Home handleClick={handleClick} />
+
+      <div className="details">
+        <p>{firstName}</p>
+        <p>{lastName}</p>
+        <p>{email}</p>
+        <p>{contact}</p>
+        <p>{gender}</p>
+        <p>{subject}</p>
+        <p>{resume?.name}</p>
+        <p>{url}</p>
+        <p>{domain}</p>
+        <p>{about}</p>
+      </div>
+    </>
+  );
+};
+
+export default Data;
+
+This resolves the error.
+Usage of optional chaining(?.) to handle the case when there are no values entered in the field
